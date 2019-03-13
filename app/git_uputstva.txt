@@ -1,0 +1,22 @@
+git clone https://github.com/VAŠ_USERNAME/AlgebraBlog-1.git
+
+cd AlgebraBlog-1
+
+git remote add adobrini-algebra https://github.com/adobrini-algebra/AlgebraBlog.git
+
+git remot -v
+
+// kod svakog starta rada
+git pull adobrini-algebra master
+
+// dodaš podatke na svoj
+git add .
+git commit -m "Poruka"
+git push
+
+// na githubu create pull request
+
+// composer install
+
+
+:wq!
