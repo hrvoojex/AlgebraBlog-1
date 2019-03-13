@@ -18,18 +18,25 @@
         <section>
             {{ $post->body }}
         </section>
-
-        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-            {{ method_field('DELETE') }}
-            {{ csrf_field() }}
-            <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-primary btn-sm" role="button" style="margin-top: 20px">Edit</a>
-            <button class="btn btn-danger btn-sm" style="margin-top: 20px">Delete</button>
-            <a href="{{ route('posts') }}" class="btn btn-info btn-sm" role="button" style="margin-top: 20px">Back</a>
-        </form>
-
-        <hr />
-
-        {{-- Add a comment --}}
+	
+	@if ( $post->user_id == auth()->id() )
+	<form style="margin-top:4%" action="{{ route('posts.destroy',$post->id) }}" method="POST">
+		{{ method_field('DELETE') }}
+		{{ csrf_field() }} 
+		<div class="btn-group btn-group-lg">
+			<a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info">Edit</a>
+			<button class="btn btn-danger">Delete</button>
+		</div>
+		<div class="btn-group float-right btn-group-lg">	
+			<a class="btn btn-primary" href="{{ route('posts') }}">Go Back</a>
+		</div>
+	</form>	
+	@else 
+		<div class="btn-group btn-group-lg">	
+			<a class="btn btn-primary" href="{{ route('posts') }}">Go Back</a>
+		</div>
+	@endif
+	<hr/>
 
         <div class="card">
             <div class="card-block">
