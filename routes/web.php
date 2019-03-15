@@ -36,8 +36,8 @@ Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth'
 
 
 
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController')->middleware('verified');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

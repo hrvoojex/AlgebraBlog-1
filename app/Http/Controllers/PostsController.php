@@ -11,11 +11,15 @@ class PostsController extends Controller
     public function __construct(){
 
         $this->middleware('auth')->except(['index', 'show']);
+      //  $this->middleware('verified');
     }
 
     public function index(){
         // $posts = DB::table('posts')->get();
         $posts = Post::latest()->get();
+
+        // SELECT year(created_at) as year, monthname(created_at) as month, count(*) as published_posts FROM posts GROUP BY year, month ORDER BY min(created_at) desc
+
 
         return view('posts.index', compact('posts'));
     }
