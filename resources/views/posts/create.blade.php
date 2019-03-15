@@ -36,6 +36,11 @@
                     </div>
 
                     <div class="form-group">
+                         <label for="tag">Tag</label>
+                         <input type="text" class="form-control" id="tag" name="tag" />
+                    </div>
+
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">Publish</button>
                         <a href="{{ route('posts') }}" class="btn btn-danger" role="button">Back</a>
                     </div>
