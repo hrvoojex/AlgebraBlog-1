@@ -1,7 +1,7 @@
 @component('mail::message')
 # Introduction
 
-Welcome to our blog!
+Hi {{ $user->name }}, Welcome to our blog!
 
 
 @component('mail::button', ['url' => 'https://algebra.hr'])

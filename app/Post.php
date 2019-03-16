@@ -17,4 +17,16 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public static function archives(){
+        
+        return static::selectRaw('year(created_at) as year,  monthname(created_at) as month, count(*) as published_posts')
+        ->groupBy('year', 'month')
+        ->orderByRaw('min(created_at) desc')
+        ->get();
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
 }
