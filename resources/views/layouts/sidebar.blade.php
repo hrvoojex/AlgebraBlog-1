@@ -24,6 +24,16 @@
                 </li>
             @endforeach
         </ol>
+        <h4>Categories</h4>
+        <ol class="list-unstyled">
+            @foreach ($categories as $category)
+                <li>
+                    <a href="{{ route('categories', $category) }}">
+                        {{ $category }}
+                    </a>
+                </li>
+            @endforeach
+        </ol>
     </div>
     <div class="sidebar-module">
     <h4>Elsewhere</h4>
