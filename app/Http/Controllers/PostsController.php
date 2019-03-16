@@ -72,8 +72,7 @@ class PostsController extends Controller
 
         $tag = request('tag');
         $tag = Tag::where('name', $tag)->get();
-        $tag_id = $tag->id();
-        $post->tags()->attach($tag_id);
+        $post->tags()->attach($tag);
 
         return redirect()->route('posts')->withFlashMessage('Post added successfully.');
     }
