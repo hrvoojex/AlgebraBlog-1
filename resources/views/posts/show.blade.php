@@ -16,7 +16,7 @@
         <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} by <a href="#">{{ $post->user->name }}</a></p>
 		
 		@if(count($post->categories))
-        <section>
+        <section style = "margin-bottom:20px;">
             <h6 style="display: inline">Categories:</h6>
             @foreach($post->categories as $category)
                 <a href="{{ route('categories', $category) }}">{{ $category->name }}</a>
@@ -25,7 +25,7 @@
         @endif
 
         @if(count($post->tags))
-        <section>
+        <section style = "margin-bottom:20px;">
             <h6 style="display: inline">Tags:</h6>
             @foreach($post->tags as $tag)
                 <a href="{{ route('tags', $tag) }}">{{ $tag->name }}</a>

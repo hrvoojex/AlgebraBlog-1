@@ -35,9 +35,29 @@
                          <textarea class="form-control {{ $errors->has('body') ? 'has-error' : '' }} " id="body" name="body" rows="10" cols="80">{{ old('body') }}</textarea>
                     </div>
 
-                    <div class="form-group">
-                         <label for="tag">Tag</label>
-                         <input type="text" class="form-control" id="tag" name="tag" />
+                    @isset ($categories) 
+                    <div class="radio {{ $errors->has('category') ? 'has-error' : ''}}">
+                         <label for="radio">Categories:</label><br/>
+                         <div class="radio">     
+                         @foreach ($categories as $category)
+                              <label>
+                                   <input type="radio" name="category" id="category" value="{{ $category->id }}">
+                                   {{ $category->name }}
+                              </label>
+                         @endforeach
+                         </div>
+                    </div>
+                    @endisset
+
+                    <label for="tags">Tags:</label><br/>
+                    <div class="d-block my-3">
+                         @foreach($tags as $tag)
+                         <label class="custom-control overflow-checkbox">
+                              <input type="checkbox" value="{{ $tag->id }}" name="tags[]" class="overflow-control-input">
+                              <span class="overflow-control-indicator"></span>
+                              <span class="overflow-control-description">{{ $tag->name }}</span>
+                         </label>
+                         @endforeach
                     </div>
 
                     <div class="form-group">
