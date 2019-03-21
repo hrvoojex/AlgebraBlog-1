@@ -50,6 +50,10 @@
                     @endisset
 
                     <label for="tags">Tags:</label><br/>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTag" style="float: right">
+                    Add New Tag
+                    </button>
                     <div class="d-block my-3">
                          @foreach($tags as $tag)
                          <label class="custom-control overflow-checkbox">
@@ -71,5 +75,8 @@
 
           </div>
      </div>
+
+     @include('tags.modal')
+
 </div>
 @endsection

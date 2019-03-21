@@ -87,7 +87,6 @@ class PostsController extends Controller
 
     public function update($id)
     {
-
         request()->validate([
             'title' =>  'required|min:3|max:255',
             'body'  =>  'required|min:3|max:65535'
@@ -112,5 +111,12 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts')->withFlashMessage('Post "'.$post_title.'" deleted successfully.');
+    }
+
+    public function showPostsForUser($id){
+
+        $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+
+        return view('posts.index', compact('posts'));
     }
 }

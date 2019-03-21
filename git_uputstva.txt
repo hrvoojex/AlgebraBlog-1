@@ -21,13 +21,3 @@ git push
 
 Za izlazak iz Vim-a
 :wq! (write,quit)
-
-
-Prolaz:
-1. Antonio Popić
-2. Jakov Barić
-3. Marko Vojtek
-4. Hrvoje Topić
-5. Mateo Marić
-6. Marko Junaković
-7. Josip Mucak

@@ -223,3 +223,15 @@
     left: 5px;
     opacity: 0;
   }
+
+  .custom-control{
+    display: inline !important;
+    padding-left: 1.2rem !important;
+    margin-right: 1rem !important;
+  }
+
+  .custom-control-radio{
+    display: inline !important;
+    padding-left: none !important;
+    margin-right: 1rem !important;
+  }

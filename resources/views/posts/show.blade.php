@@ -13,7 +13,7 @@
         <a href="{{ route('posts.show', $post->id) }}">
             <h2 class="blog-post-title">{{ $post->title }}</h2>
         </a>
-        <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} by <a href="#">{{ $post->user->name }}</a></p>
+        <p class="blog-post-meta"> {{ $post->created_at->toFormattedDateString() }} by <a href="{{ route('user.posts.show', $post->user->id) }}">{{ $post->user->name }}</a></p>
 		
 		@if(count($post->categories))
         <section style = "margin-bottom:20px;">
@@ -57,7 +57,7 @@
 	<hr/>
 
         <div class="card">
-            <div class="card-block">
+            <div class="card-body">
                 <form action="/posts/{{ $post->id }}/comment" method="post">
                     {{ csrf_field() }}
 

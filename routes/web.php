@@ -30,6 +30,8 @@ Route::patch('/posts/{post}', 'PostsController@update')->name('posts.update');
 
 Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy');
 
+Route::get('/user/{user}/posts', 'PostsController@showPostsForUser')->name('user.posts.show');
+
 // Comments
 Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth');
 
@@ -43,7 +45,7 @@ Route::post('/tags', 'TagController@store')->name('tags.store');
 Route::get('/posts/categories/{category}', 'CategoryController@index')->name('categories');
 
 
-Route::resource('users', 'UsersController')->middleware('verified');
+Route::resource('users', 'UsersController')->middleware('roles:admin');
 
 Auth::routes(['verify' => true]);
 
