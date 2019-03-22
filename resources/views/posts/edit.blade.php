@@ -20,6 +20,39 @@
                     <label for="body">Body:</label>
                     <textarea class="form-control {{ $errors->has('body') ? 'has-error' : '' }} " id="body" name="body" rows="10" cols="80">{{ $post->body }}</textarea>
                 </div>
+
+                @isset ($categories) 
+                    <div class="radio {{ $errors->has('category') ? 'has-error' : ''}}">
+                         <label for="radio">Categories:</label><br/>
+                         <div class="radio">     
+                         @foreach ($categories as $category)
+                              <label class="custom-control-radio">
+                                   <input type="radio" name="category" id="category" value="{{ $category->id }}" {{ $category->posts->contains($post->id) ? 'checked=checked' : ''}}>
+                                   {{ $category->name }}
+                              </label>
+                         @endforeach
+                         </div>
+                    </div>
+                @endisset
+
+                <br>
+
+                <label for="tags">Tags:</label>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTag" style="float: right">
+                Add New Tag
+                </button>
+                <br/>
+                <div class="d-block my-3">
+                        @foreach($tags as $tag)
+                        <label class="custom-control overflow-checkbox">
+                            <input type="checkbox" value="{{ $tag->id }}" name="tags[]" class="overflow-control-input" {{ $tag->posts->contains($post->id) ? 'checked=checked' : ''}}>
+                            <span class="overflow-control-indicator"></span>
+                            <span class="overflow-control-description">{{ $tag->name }}</span>
+                        </label>
+                        @endforeach
+                </div>
+
                 <button type="submit" class="btn btn-primary">Confirm</button>
                 <a href="{{ route('posts') }}" class="btn btn-danger" role="button">Back</a>
 
@@ -28,6 +61,9 @@
             </form>
         </div>
     </div>
+
+    @include('tags.modal')
+
 </div>
 
 @endsection

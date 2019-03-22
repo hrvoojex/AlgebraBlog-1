@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Role;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index()
     {
-        $posts = $category->posts;
-
-        return view('posts.index', compact('posts'));
+        //
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Show the form for creating a new resource.
      *
@@ -45,10 +41,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Role $role)
     {
         //
     }
@@ -56,10 +52,10 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Role $role)
     {
         //
     }
@@ -68,10 +64,10 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Role $role)
     {
         //
     }
@@ -79,12 +75,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Role $role)
     {
         //
     }
->>>>>>> ba43fe5548a21b38da351833269257e0a7638dfa
 }

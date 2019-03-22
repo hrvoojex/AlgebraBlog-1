@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -70,7 +71,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        \Mail::to($user)->send(new Welcome($user));
+        $user->roles()->attach(Role::where('name', 'user')->first());
+
+        // \Mail::to($user)->send(new Welcome($user));
 
         return $user;
     }

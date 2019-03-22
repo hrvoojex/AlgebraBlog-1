@@ -12,7 +12,10 @@
             <ul class="nav blog-nav">
                 <a class="nav-link" href="{{ route('home') }}">Home</a>
                 <a class="nav-link" href="{{ route('posts') }}">Posts</a>
-                <a class="nav-link" href="{{ route('users.index') }}">Users</a>                
+                <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                @auth
+                <a class="nav-link" href="{{ route('user.posts.show', auth()->id() ) }}">My Posts</a>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->

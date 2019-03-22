@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Carbon\Carbon;
 use App\Tag;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -48,7 +49,9 @@ class PostsController extends Controller
 
     public function create(){
 
-        return view('posts.create');
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('posts.create')->with(compact('categories', 'tags'));
     }
 
     public function store(){
@@ -58,21 +61,17 @@ class PostsController extends Controller
             'body' => 'required|min:3|max:65535'
         ]);
 
-       /*  $post = new Post();
-        $post->title = request('title');
-        $post->body = request('body');
-        $post->user_id = auth()->id();
-        $post->save(); */
-
         $post = Post::create([
             'title' => request('title'),
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
 
-        $tag = request('tag');
-        $tag = Tag::where('name', $tag)->get();
-        $post->tags()->attach($tag);
+        $tags = request('tags');        
+        $post->tags()->attach($tags);
+
+        $post->categories()->attach(request('category'));
+        
 
         return redirect()->route('posts')->withFlashMessage('Post added successfully.');
     }
@@ -80,13 +79,14 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', compact('post','categories', 'tags'));
     }
 
     public function update($id)
     {
-
         request()->validate([
             'title' =>  'required|min:3|max:255',
             'body'  =>  'required|min:3|max:65535'
@@ -95,9 +95,11 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post_title = $post->title;
         $post->title = request('title');
-        $post->body = request('body');
-        
+        $post->body = request('body');        
         $post->save();
+
+        $post->tags()->sync(request('tags'));
+        $post->categories()->sync(request('category'));
 
         return redirect()->route('posts.show', $post->id)->withFlashMessage('Post "'.$post_title.'" updated successfully.');
     }
@@ -109,5 +111,12 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts')->withFlashMessage('Post "'.$post_title.'" deleted successfully.');
+    }
+
+    public function showPostsForUser($id){
+
+        $posts = Post::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+
+        return view('posts.index', compact('posts'));
     }
 }
